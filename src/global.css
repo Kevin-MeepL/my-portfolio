@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.div-card {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-card {
+    height: 100vh; /* Each section fills the screen */
+    scroll-snap-align: start; /* Ensures each section snaps into place */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+/* Remove default margins and scrolling from html/body */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent the body from scrolling */
+  }
+  
+  /* Hide scrollbar for Chrome, Safari, Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge, Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .index-card {
+    opacity: 1 !important;
+  }
