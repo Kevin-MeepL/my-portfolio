@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ScrollSections from './component/GsapTest'
+import ScrollSections from './component/ScrollSection'
 
 
 

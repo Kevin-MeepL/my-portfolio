@@ -3,59 +3,49 @@ import React, { useState, useEffect } from "react";
 const HomeSection = () => {
   // Dynamic tagline setup
   const [tagline, setTagline] = useState("Software Engineer");
+  const [fade, setFade] = useState(true);
   const descriptions = [
     "Software Engineer",
-    "Gamer",
+    "Game Enjoyer",
     "Front End Developer",
     "AI Enthusiast",
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTagline((prev) => {
-        const currentIndex = descriptions.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % descriptions.length;
-        return descriptions[nextIndex];
-      });
+      setFade(false); // Fade out
+      setTimeout(() => {
+        setTagline((prev) => {
+          const currentIndex = descriptions.indexOf(prev);
+          const nextIndex = (currentIndex + 1) % descriptions.length;
+          return descriptions[nextIndex];
+        });
+        setFade(true); // Fade back in
+      }, 300);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Spotlight effect setup
-  const [spotlight, setSpotlight] = useState({ x: "50%", y: "50%" });
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setSpotlight({ x, y });
-  };
-
-  const spotlightStyle = {
-    left: spotlight.x,
-    top: spotlight.y,
-    width: "100px",
-    height: "100px",
-    borderRadius: "50%",
-    background:
-      "radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%)",
-    transform: "translate(-50%, -50%)",
-  };
-
   return (
     <section
       id="home"
-      onMouseMove={handleMouseMove}
-      className="h-screen snap-start flex flex-col items-center justify-center relative bg-gray-900 overflow-hidden"
+      className="h-screen snap-start flex flex-col items-center justify-center relative bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
     >
-      {/* Spotlight element */}
-      <div className="absolute pointer-events-none" style={spotlightStyle} />
-
-      <h1 className="text-5xl font-bold text-white mb-4">
-        Hi! I'm Kevin Laguitan
-      </h1>
-      <p className="text-xl text-white">
-        I'm a <span className="transition-opacity duration-500">{tagline}</span>
+      <h1 className="text-5xl font-bold mb-4">Hi! I'm Kevin Laguitan</h1>
+      <p className="text-xl flex items-center">
+        I'm a { " "}
+        <span
+          className="ml-2 inline-flex items-center justify-start"
+          style={{ minWidth: "220px", height: "1.5em" }}
+        >
+          <span
+            className={`transition-all duration-500 ease-in-out transform ${
+              fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
+            {tagline}
+          </span>
+        </span>
       </p>
     </section>
   );

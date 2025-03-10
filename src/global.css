@@ -7,8 +7,15 @@
 .raleway-medium {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
+}
+
+.raleway-bold {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: bold;
 }
 
 .raleway-black {
