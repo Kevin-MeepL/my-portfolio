@@ -29,24 +29,23 @@ const HomeSection = () => {
   return (
     <section
       id="home"
-      className="h-screen snap-start flex flex-col items-center justify-center relative bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+      className="h-screen w-full px-6 snap-start flex flex-col items-center justify-center relative bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
     >
-      <h1 className="text-5xl font-bold mb-4">Hi! I'm Kevin Laguitan</h1>
-      <p className="text-xl flex items-center">
-        I'm a { " "}
-        <span
-          className="ml-2 inline-flex items-center justify-start"
-          style={{ minWidth: "220px", height: "1.5em" }}
-        >
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-center">
+        Hi! I'm Kevin Laguitan
+      </h1>
+      <div className="w-full text-center">
+        <span className="text-xl inline-block">I'm a</span>
+        <span className="text-xl inline-block ml-1">
           <span
-            className={`transition-all duration-500 ease-in-out transform ${
+            className={`inline-block transition-all duration-500 ease-in-out transform ${
               fade ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
             }`}
           >
             {tagline}
           </span>
         </span>
-      </p>
+      </div>
     </section>
   );
 };
