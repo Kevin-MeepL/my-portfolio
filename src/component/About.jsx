@@ -37,23 +37,23 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      ref={ref}
-      className="h-screen snap-start flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+      ref={ref} 
+      className="min-h-screen snap-start flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
     >
       {/* Tech Stack Section */}
       <motion.div 
-      className="p-8 border-b border-gray-300 dark:border-gray-700 w-full max-w-5xl"
+      className="w-full max-w-5xl p-4 sm:p-6 border-b border-gray-300 dark:border-gray-700"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.2 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <h2 className="text-3xl raleway-bold mb-6">Tech Stack</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <h2 className="text-2xl sm:text-3xl raleway-bold mb-4 sm:mb-6">Tech Stack</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
           {techStack.map((tech, index) => (
-            <div key={index} className="flex flex-col items-center">
+            <div key={index} className="flex flex-col items-center text-center">
               {tech.icon}
-              <span className="mt-2 text-lg raleway-medium">{tech.name}</span>
+              <span className="mt-2 text-sm sm:text-lg raleway-medium">{tech.name}</span>
             </div>
           ))}
         </div>
@@ -61,23 +61,23 @@ const AboutSection = () => {
 
       {/* Experience Section */}
       <motion.div 
-      className="p-8 border-b border-gray-300 dark:border-gray-700 w-full max-w-5xl"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.2 }}
-      transition={{ duration: 1, ease: "easeOut" }}
+        className="w-full max-w-5xl p-4 sm:p-6 border-b border-gray-300 dark:border-gray-700"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
       >
-        <h2 className="text-3xl raleway-bold mb-6">Experience</h2>
-        <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-6 p-4 sm:p-6 md:p-8 border-l-4 border-blue-500 rounded-lg bg-gray-200 dark:bg-gray-800 max-w-full md:max-w-5xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl raleway-bold mb-4 sm:mb-6">Experience</h2>
+        <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6 p-4 sm:p-6 border-l-4 border-blue-500 rounded-lg bg-gray-200 dark:bg-gray-800">
           <div>
-            <h3 className="text-xl raleway-medium">App/Cloud Support Analyst</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-base">
+            <h3 className="text-lg sm:text-xl raleway-medium">App/Cloud Support Analyst</h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
               Accenture | 2021 - 2024
             </p>
-            <ul className="list-disc ml-6 text-base text-gray-500 dark:text-gray-400">
-              <li>Ensuring 24/7 reliability and uptime of customer-facing systems</li>
-              <li>Resolving client-reported issues while meeting SLA requirements</li>
-              <li>Maintaining system assets, including Active Directory accounts, database accounts, and SSL certificates, ensuring timely renewals to uphold system uptime and reliability</li>
+            <ul className="list-disc ml-4 sm:ml-6 text-sm sm:text-base text-gray-500 dark:text-gray-400">
+              <li>Ensuring 24/7 reliability and uptime of customer-facing systems.</li>
+              <li>Resolving client-reported issues while meeting SLA requirements.</li>
+              <li>Maintaining system assets, including Active Directory accounts, database accounts, and SSL certificates.</li>
             </ul>
           </div>
         </div>
@@ -103,14 +103,14 @@ const AboutSection = () => {
             <p className="text-gray-600 dark:text-gray-400 text-base">
               Microsoft Issued: May 2021
             </p>
-            <a 
+            <p 
               href="https://learn.microsoft.com/api/credentials/share/en-us/Kevin-9452/46BD1BCBD8DE080A?sharingId=62031DA111F8B627" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-500 dark:text-blue-400 hover:underline text-lg raleway-medium"
             >
               Verify Credential
-            </a>
+            </p>
             <ul className="list-disc ml-6 text-base text-gray-500 dark:text-gray-400">
               <li>Demonstrates foundational knowledge of cloud concepts, Azure services, security, and pricing.</li>
             </ul>
