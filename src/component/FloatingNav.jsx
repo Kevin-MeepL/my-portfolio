@@ -1,77 +1,71 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
-const FloatingNav = ({ sections }) => {
-  const [activeSection, setActiveSection] = useState(sections[0].id);
-  const [isOpen, setIsOpen] = useState(true);
+const Navbar = () => {
+  const [scrolling, setScrolling] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  // IntersectionObserver for highlighting active section
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
-        if (visibleEntries.length) {
-          // Pick the entry with the highest intersection ratio
-          const mostVisible = visibleEntries.reduce((prev, curr) =>
-            prev.intersectionRatio > curr.intersectionRatio ? prev : curr
-          );
-          setActiveSection(mostVisible.target.id);
+    const scrollContainer = document.getElementById("scroll-container");
+    if (!scrollContainer) return;
+  
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects"];
+      let currentSection = "home";
+  
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          console.log(`Section: ${section}, Top: ${rect.top}, Bottom: ${rect.bottom}`);
+  
+          // Adjust condition to work inside scroll container
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            console.log(`✅ Setting active section to: ${section}`);
+            currentSection = section;
+          }
         }
-      },
-      { threshold: 0.1 }
-    );
-
-    sections.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [sections]);
+      });
+  
+      setActiveSection(currentSection);
+    };
+  
+    scrollContainer.addEventListener("scroll", handleScroll);
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <motion.div
-      // Container that slides open/close horizontally
-      className="fixed top-1/2 right-0 transform -translate-y-1/2 z-50 bg-gray-800 bg-opacity-50 shadow- overflow-hidden"
-      style={{ borderRadius: "8px 0 0 8px" }}
-      // Animate the width based on isOpen
-      initial={{ width: 30 }}
-      animate={isOpen ? { width: 110 } : { width: 30 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
+    <nav
+      className={`fixed top-0 left-0 w-full px-6 py-4 z-40 flex items-center justify-between transition-all duration-300 ${
+        scrolling ? "bg-gray-900 bg-opacity-0 shadow-md" : "bg-transparent"
+      }`}
     >
-      {/* Toggle Button on the LEFT edge of the tray */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-r"
-      >
-        {/* Show '>' when open, '<' when collapsed */}
-        {isOpen ? ">" : "<"}
-      </button>
+      {/* Left Side: Icon Version of Your Name */}
+      <div className=" font-bold text-xl tracking-wider bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">KL</div>
 
-      {/* Nav Links */}
-      <div className="pt-3 pl-12 pr-3">
-        {sections.map((section) => (
+      {/* Center: Text-Based Navigation */}
+      <div className="flex gap-8 font-semibold bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+        {["home", "about", "projects"].map((section) => (
           <a
-            key={section.id}
-            href={`#${section.id}`}
-            className={`block p-3 text-xl rounded-md transition hover:bg-gray-300 dark:hover:bg-gray-700 ${
-              activeSection === section.id
-                ? "bg-gray-600 text-yellow-400"
-                : "text-white"
+            key={section}
+            href={`#${section}`}
+            className={`relative px-3 py-2 transition-all rounded-lg raleway-medium ${
+              activeSection === section
+                ? "bg-gray-500 shadow-lg"
+                : "hover:bg-gray-600"
             }`}
           >
-            {section.icon ? (
-              <span role="img" aria-label={section.title}>
-                {section.icon}
-              </span>
-            ) : (
-              <span className="text-sm font-bold">{section.title}</span>
-            )}
+            {section.charAt(0).toUpperCase() + section.slice(1)}
           </a>
         ))}
       </div>
-    </motion.div>
+
+      {/* Right Side: Theme Toggle */}
+      <div className="ml-8">
+        <ThemeToggle />
+      </div>
+    </nav>
   );
 };
 
-export default FloatingNav;
+export default Navbar;

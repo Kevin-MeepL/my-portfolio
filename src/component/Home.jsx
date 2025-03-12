@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaLinkedin, FaEnvelope } from "react-icons/fa"; // FontAwesome icons
 
 const HomeSection = () => {
   // Dynamic tagline setup
@@ -45,6 +46,27 @@ const HomeSection = () => {
             {tagline}
           </span>
         </span>
+      </div>
+
+      {/* Contacts Section */}
+      <div className="absolute bottom-6 flex flex-col items-center">
+        <p className="text-lg font-semibold mb-2">Contacts</p>
+        <div className="flex space-x-6">
+          <a
+            href="https://www.linkedin.com/in/kevin-laguitan-a52b94272/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition duration-300 text-3xl"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="mailto:klaguitan21@gmail.com"
+            className="text-gray-700 dark:text-gray-300 hover:text-red-500 transition duration-300 text-3xl"
+          >
+            <FaEnvelope />
+          </a>
+        </div>
       </div>
     </section>
   );

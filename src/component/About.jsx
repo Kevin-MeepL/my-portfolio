@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SiTailwindcss, SiMysql } from "react-icons/si";
-import { FaReact, FaNodeJs, FaDatabase, FaGitAlt } from "react-icons/fa";
+import { FaPhp ,FaReact, FaNodeJs, FaDatabase, FaGitAlt } from "react-icons/fa";
 
 const AboutSection = () => {
   const ref = useRef(null);
@@ -28,6 +28,7 @@ const AboutSection = () => {
     { name: "Azure", icon: <AzureIcon /> },
     { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400 w-10 h-10" /> },
     { name: "ServiceNow", icon: <ServiceNowIcon /> },
+    { name: "PHP", icon: <FaPhp className="text-blue-500 w-10 h-10" /> },
     { name: "Node.js", icon: <FaNodeJs className="text-green-600 w-10 h-10" /> },
     { name: "SQL", icon: <FaDatabase className="text-gray-500 w-10 h-10" /> },
     { name: "MySQL", icon: <SiMysql className="text-blue-500 w-10 h-10" /> },
@@ -38,7 +39,7 @@ const AboutSection = () => {
     <section
       id="about"
       ref={ref} 
-      className="min-h-screen snap-start flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+      className="pt-16 min-h-screen snap-start flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
     >
       {/* Tech Stack Section */}
       <motion.div 
