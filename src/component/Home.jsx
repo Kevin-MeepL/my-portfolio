@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa"; // FontAwesome icons
 
 const HomeSection = () => {
-  // Dynamic tagline setup
   const [tagline, setTagline] = useState("Software Engineer");
   const [fade, setFade] = useState(true);
   const descriptions = [
@@ -48,10 +47,10 @@ const HomeSection = () => {
         </span>
       </div>
 
-      {/* Contacts Section */}
-      <div className="absolute bottom-6 flex flex-col items-center">
+      {/* Contacts Section Docked to Bottom */}
+      <div className="absolute bottom-6 w-full flex flex-col items-center">
         <p className="text-lg font-semibold mb-2">Contacts</p>
-        <div className="flex space-x-6">
+        <div className="flex gap-6 justify-center">
           <a
             href="https://www.linkedin.com/in/kevin-laguitan-a52b94272/"
             target="_blank"
