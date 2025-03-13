@@ -48,7 +48,7 @@ const HomeSection = () => {
       </div>
 
       {/* Contacts Section Docked to Bottom */}
-      <div className="absolute bottom-6 w-full flex flex-col items-center">
+      <div className="absolute pb-16 bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center bg-transparent text-gray-900 dark:text-white p-2 rounded-lg">
         <p className="text-lg font-semibold mb-2">Contacts</p>
         <div className="flex gap-6 justify-center">
           <a
