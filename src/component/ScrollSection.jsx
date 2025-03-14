@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FloatingNav from "./FloatingNav";
 import HomeSection from "./Home";
 import ProjectSection from "./Projects";
 import AboutSection from "./About";
-
 
 // Section data remains the same
 const sections = [
@@ -13,7 +12,6 @@ const sections = [
 ];
 
 const ScrollSections = () => {
-  // Moved hooks inside the component
   const [spotlight, setSpotlight] = useState({ x: "50%", y: "50%" });
 
   const handleMouseMove = (e) => {
@@ -23,25 +21,23 @@ const ScrollSections = () => {
   const isDarkMode = document.documentElement.classList.contains("dark");
 
   return (
-    // Outer container fixed to the viewport height
     <div onMouseMove={handleMouseMove} className="relative h-screen">
-      {/* Global Spotlight */}
+      {/* Hide spotlight on mobile and show only on md+ screens */}
       <div
-        className="fixed top-0 left-0 pointer-events-none z-50"
+        className="hidden md:block fixed top-0 left-0 pointer-events-none z-50"
         style={{
           left: spotlight.x,
           top: spotlight.y,
           width: "120px",
           height: "120px",
           borderRadius: "50%",
-          background:isDarkMode 
-          ? "radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%)"  // light tint for dark mode
-          : "radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%)", 
+          background: isDarkMode
+            ? "radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%)"
+            : "radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%)",
           transform: "translate(-50%, -50%)",
         }}
       />
       <FloatingNav sections={sections} />
-      {/* Scroll container takes full height and scrolls its overflowing content */}
       <div
         id="scroll-container"
         className="overflow-y-scroll snap-y snap-mandatory hide-scrollbar h-full scroll-smooth"
