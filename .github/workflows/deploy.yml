@@ -26,7 +26,9 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # The branch where your app will be deployed
-          folder: dist # The folder to deploy (Vite's build output)
+          branch: gh-pages  # The branch where your app will be deployed
+          folder: dist      # The folder to deploy (Vite's build output)
+          commit-message: 'Deploying site'  # Optional: custom commit message
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub for authentication
+  
