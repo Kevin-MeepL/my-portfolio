@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: your-dockerhub-username/my-portfolio:latest
+          tags: kevindelol21/my-portfolio:latest
 
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@v1.0.0
