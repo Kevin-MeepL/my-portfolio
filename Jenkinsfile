@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Checkout Code') {
       steps {
-        git credentialsId: 'github-token', url: 'https://github.com/Kevin-MeepL/my-portfolio.git'
+        git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/Kevin-MeepL/my-portfolio.git'
       }
     }
 
