@@ -3,15 +3,15 @@ pipeline {
 
   environment {
     DOCKER_IMAGE = 'kevindelol21/my-portfolio:latest'
-    DOCKERHUB_CREDENTIALS = '70266f54-c93b-49c3-85ee-51d6a36ad0f3'      // Jenkins credential ID for DockerHub
-    SSH_KEY = 'aws-ssh-cred'                        // Jenkins credential ID for EC2 private key
+    DOCKERHUB_CREDENTIALS = 'docker-pat'      // Jenkins credential ID for DockerHub
+    SSH_KEY = 'ssh-username-and-private-key'                        // Jenkins credential ID for EC2 private key
     EC2_HOST = '50.17.122.212'
   }
 
   stages {
     stage('Checkout Code') {
       steps {
-        git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/Kevin-MeepL/my-portfolio.git'
+        git branch: 'main', credentialsId: 'github-pat', url: 'https://github.com/Kevin-MeepL/my-portfolio.git'
       }
     }
 
