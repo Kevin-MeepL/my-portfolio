@@ -14,6 +14,13 @@ pipeline {
         git branch: 'main', credentialsId: 'github-pat', url: 'https://github.com/Kevin-MeepL/my-portfolio.git'
       }
     }
+    
+    stage('Debug Docker Path') {
+      steps {
+        sh 'which docker'
+        sh 'echo $PATH'
+      }
+    }
 
     stage('Build Docker Image') {
       steps {
