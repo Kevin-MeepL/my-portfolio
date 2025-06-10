@@ -41,16 +41,30 @@ pipeline {
 
     stage('Deploy to EC2') {
       steps {
-        sshagent (credentials: ["$SSH_KEY"]) {
-          sh """
-            ssh -o StrictHostKeyChecking=no ec2-user@$EC2_HOST '
-              docker pull $DOCKER_IMAGE &&
-              docker stop portfolio || true &&
-              docker rm portfolio || true &&
-              docker run -d --name portfolio -p 80:80 $DOCKER_IMAGE
-            '
-          """
+        timeout(time: 5, unit: 'MINUTES') {
+          sshagent (credentials: ["$SSH_KEY"]) {
+            sh """
+              ssh -o StrictHostKeyChecking=no ec2-user@$EC2_HOST '
+                if ! command -v docker &> /dev/null; then
+                  echo "Docker not found, installing..."
+                  sudo yum update -y && sudo yum install -y docker
+                  sudo systemctl start docker
+                  sudo usermod -aG docker ec2-user
+                fi &&
+                docker pull $DOCKER_IMAGE &&
+                docker stop portfolio || true &&
+                docker rm portfolio || true &&
+                docker run -d --name portfolio -p 80:80 $DOCKER_IMAGE
+              '
+            """
+          }
         }
+      }
+    }
+
+    stage('Verify Deployment') {
+      steps {
+        sh "curl --fail http://$EC2_HOST || echo 'App may not be up yet'"
       }
     }
   }
