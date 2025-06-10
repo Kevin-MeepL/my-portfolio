@@ -19,6 +19,10 @@ pipeline {
       steps {
         sh 'which docker'
         sh 'echo $PATH'
+        sh 'which docker'
+        sh 'docker --version'
+        sh 'groups'
+        sh 'whoami'
       }
     }
 
